@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -29,7 +30,7 @@ public class SecurityConfiguration {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors(cors -> cors.disable()).csrf(csrf -> csrf.disable())
+        httpSecurity.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
                         .antMatchers("/authenticate", "/registerNewUser").permitAll()
                         .antMatchers(HttpHeaders.ALLOW).permitAll()
