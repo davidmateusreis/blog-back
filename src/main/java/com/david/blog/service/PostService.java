@@ -1,5 +1,7 @@
 package com.david.blog.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class PostService {
 
     public Post addNewPost(Post post) {
         return postDao.save(post);
+    }
+
+    public List<Post> getAllPosts() {
+        return (List<Post>) postDao.findAll();
     }
 }

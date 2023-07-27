@@ -2,11 +2,13 @@ package com.david.blog.controller;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -49,5 +51,11 @@ public class PostController {
             imageModels.add(imageModel);
         }
         return imageModels;
+    }
+
+    @PreAuthorize("hasRole('Admin')")
+    @GetMapping({ "/getAllPosts" })
+    public List<Post> getAll() {
+        return postService.getAllPosts();
     }
 }
