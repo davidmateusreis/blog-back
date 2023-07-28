@@ -21,4 +21,8 @@ public class PostService {
     public List<Post> getAllPosts() {
         return (List<Post>) postDao.findAll();
     }
+
+    public void deletePostDetails(Long postId) {
+        postDao.deleteById(postId);
+    }
 }
