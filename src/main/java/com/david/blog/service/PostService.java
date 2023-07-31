@@ -25,4 +25,8 @@ public class PostService {
     public void deletePostDetails(Long postId) {
         postDao.deleteById(postId);
     }
+
+    public Post getPostDetailsById(Long postId) {
+        return postDao.findById(postId).get();
+    }
 }

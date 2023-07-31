@@ -66,4 +66,10 @@ public class PostController {
     public void deleteDetails(@PathVariable("postId") Long postId) {
         postService.deletePostDetails(postId);
     }
+
+    @PreAuthorize("hasRole('Admin')")
+    @GetMapping({ "/getPostDetailsById/{postId}" })
+    public Post getDetailsById(@PathVariable("postId") Long postId) {
+        return postService.getPostDetailsById(postId);
+    }
 }
