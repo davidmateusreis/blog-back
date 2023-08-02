@@ -18,8 +18,13 @@ public class PostService {
         return postDao.save(post);
     }
 
-    public List<Post> getAllPosts() {
-        return (List<Post>) postDao.findAll();
+    public List<Post> getAllPosts(String searchKey) {
+        if (searchKey.equals("")) {
+            return (List<Post>) postDao.findAll();
+        } else {
+            return (List<Post>) postDao.findByPostTitleContainingIgnoreCaseOrPostContentContainingIgnoreCase(searchKey,
+                    searchKey);
+        }
     }
 
     public void deletePostDetails(Long postId) {
