@@ -1,6 +1,6 @@
 package com.david.blog.entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,8 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import lombok.Data;
 
@@ -30,9 +30,9 @@ public class Post {
         private String postTitle;
         @Lob
         private String postContent;
-        @CreationTimestamp
+        @CreatedDate
         private Date createdAt;
-        @UpdateTimestamp
+        @LastModifiedDate
         private Date updatedAt;
         @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
         @JoinTable(name = "post_images", joinColumns = { @JoinColumn(name = "post_id") }, inverseJoinColumns = {
