@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
@@ -18,9 +20,14 @@ public class User {
 
     @Id
     private String userName;
+    @NotBlank(message = "This field may not be blank")
     private String userFirstName;
+    @NotBlank(message = "This field may not be blank")
     private String userLastName;
+    @Email
+    @NotBlank(message = "This field may not be blank")
     private String userEmail;
+    @NotBlank(message = "This field may not be blank")
     private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLE", joinColumns = {

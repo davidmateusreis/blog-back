@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -31,7 +33,7 @@ public class PostController {
 
     @PreAuthorize("hasRole('Admin')")
     @PostMapping(value = { "/addNewPost" }, consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public Post addNew(@RequestPart("post") Post post, @RequestPart("imageFile") MultipartFile[] file) {
+    public Post addNew(@RequestPart("post") @Valid Post post, @RequestPart("imageFile") MultipartFile[] file) {
 
         try {
             Set<ImageModel> images = upladImage(file);

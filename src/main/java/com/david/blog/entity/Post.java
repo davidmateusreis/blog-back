@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -26,9 +27,12 @@ public class Post {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long postId;
+        @NotBlank(message = "This field may not be blank")
         private String postAuthor;
+        @NotBlank(message = "This field may not be blank")
         private String postTitle;
         @Lob
+        @NotBlank(message = "This field may not be blank")
         private String postContent;
         @CreatedDate
         private Date createdAt;

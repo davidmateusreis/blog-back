@@ -1,6 +1,7 @@
 package com.david.blog.controller;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping({ "/registerNewUser" })
-    public User registerNewUser(@RequestBody User user) {
+    public User registerNewUser(@RequestBody @Valid User user) {
         return userService.registerNewUser(user);
     }
 
