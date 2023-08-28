@@ -32,7 +32,7 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors(Customizer.withDefaults()).csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorize) -> authorize
-                        .antMatchers("/authenticate", "/registerNewUser").permitAll()
+                        .antMatchers("/authenticate", "/registerNewUser", "/sendMessage").permitAll()
                         .antMatchers(HttpHeaders.ALLOW).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(handling -> handling.authenticationEntryPoint(jwtAuthenticationEntryPoint))
